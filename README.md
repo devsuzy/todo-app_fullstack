@@ -1,9 +1,10 @@
 ## 📝 Todo App
-![Vercel](https://img.shields.io/badge/deployed%20on-vercel-blue)
+![Vercel](https://img.shields.io/badge/deployed%20on-vercel-purple)
 ![Next.js](https://img.shields.io/badge/Next.js-15.5.2-black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
+![Node Current](https://img.shields.io/badge/Node.js-20.19.1-green)
 
-Zustand와 Next.js를 활용하여 만든 Todo 애플리케이션입니다.
+Express + MongoDB + Next.js으로 만든 Todo 애플리케이션입니다.
 
 ### 📱 스크린샷
 <img width="492" height="602" alt="todoApp1" src="https://github.com/user-attachments/assets/bfba87b8-f496-474c-981e-211369e0ab7f" />
