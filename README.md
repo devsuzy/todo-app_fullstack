@@ -9,10 +9,6 @@ Express + MongoDB + Next.js으로 만든 Todo 애플리케이션입니다.
 ### 📱 스크린샷
 <img width="492" height="602" alt="todoApp1" src="https://github.com/user-attachments/assets/bfba87b8-f496-474c-981e-211369e0ab7f" />
 
-
-### 🔗 URL
-**[https://zustand-with-ai.vercel.app/](https://zustand-with-ai.vercel.app/)**
-
 ### ✨ 주요 기능
 - ✅ **할 일 관리**: 추가, 삭제, 편집, 완료 체크
 - 💾 **데이터 지속성**: 로컬 스토리지 자동 저장
@@ -33,7 +29,7 @@ Express + MongoDB + Next.js으로 만든 Todo 애플리케이션입니다.
 
 ### 📁 디렉토리 구조
 ```
-📦 zustand_with_ai
+📦 todo-app_fullstack
 ├── 📂 public/                # 정적 파일
 ├── 📂 src/
 │   ├── 📂 app/               # Next.js App Router
@@ -56,8 +52,8 @@ Express + MongoDB + Next.js으로 만든 Todo 애플리케이션입니다.
 ### 🚀 설치 및 실행
 ```bash
 # 저장소 클론
-git clone https://github.com/your-username/zustand-todo-app.git
-cd zustand-todo-app
+git clone https://github.com/devsuzy/todo-app_fullstack.git
+cd todo-app_fullstack
 
 # 의존성 설치
 npm install
@@ -74,7 +70,7 @@ npm run dev
 - 키보드 단축키 지원 (Enter: 저장, Esc: 취소)
 
 #### 🏗️ 기술적 특징
-- **Zustand Persist**: 자동 로컬 스토리지 저장
 - **TypeScript**: 타입 안전성 보장
 - **App Router**: Next.js 13+ 최신 라우팅 시스템
+- **Zustand Persist**: 자동 로컬 스토리지 저장
 - **Tailwind CSS**: 유틸리티 우선 스타일링
