@@ -29,7 +29,7 @@ Next.js + Express + MongoDB로 만든 Todo 애플리케이션입니다.
 | **상태 관리** | Zustand 5.0.8 |
 | **데이터베이스** | MongoDB |
 | **UI** | react-spinners |
-| **배포** | Vercel |
+| **배포** | Vercel, Render |
 
 ### 📁 디렉토리 구조
 > **Monorepo** 구조 — 프론트엔드(`frontend/`)와 백엔드(`backend/`)를 하나의 레포에서 관리합니다.

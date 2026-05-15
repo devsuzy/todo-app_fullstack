@@ -1,1 +1,28 @@
-GET http://localhost:3000/hello
+GET http://localhost:3000/tasks
+
+###
+GET http://localhost:3000/tasks?sort=oldest&count=3
+
+###
+GET http://localhost:3000/tasks/6a06c84f2096d42da4116144
+
+###
+POST http://localhost:3000/tasks
+Content-Type: application/json
+
+{
+  "title": "할 일 1",
+  "description": "할 일 1에 대한 설명입니다."
+}
+
+###
+PATCH http://localhost:3000/tasks/6a06c84f2096d42da4116144
+Content-Type: application/json
+
+{
+  "title": "할 일 1 (수정됨)",
+  "description": "할 일 1에 대한 설명입니다. (수정됨)"
+}
+
+###
+DELETE http://localhost:3000/tasks/6a06c84f2096d42da4116144

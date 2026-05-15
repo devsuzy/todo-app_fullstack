@@ -15,7 +15,7 @@ const useStore = create<StoreState>()(
         const currentTodos = get().todos;
         const newId = generatedId(currentTodos);
         set((prev) => ({
-          todos: [...prev.todos, { id: newId, title, done: false }],
+          todos: [...prev.todos, { id: newId, title, isComplete: false }],
         }));
       },
       removeTodo: (id) =>
@@ -24,9 +24,9 @@ const useStore = create<StoreState>()(
         })),
       toggleTodo: (id) =>
         set((prev) => ({
-          todos: prev.todos.map((todo) => (todo.id === id ? { ...todo, done: !todo.done } : todo)),
+          todos: prev.todos.map((todo) => (todo.id === id ? { ...todo, isComplete: !todo.isComplete } : todo)),
         })),
-      updatedTodo: (id, title) =>
+      updateTodo: (id, title) =>
         set((prev) => ({
           todos: prev.todos.map((todo) =>
             todo.id === id ? { ...todo, title: title.trim() } : todo

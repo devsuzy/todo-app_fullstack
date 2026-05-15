@@ -5,7 +5,7 @@ import useStore from "@/lib/useStore";
 
 const selectRemoveTodo = (state: StoreState) => state.removeTodo;
 const selectToggleTodo = (state: StoreState) => state.toggleTodo;
-const selectUpdateTodo = (state: StoreState) => state.updatedTodo;
+const selectUpdateTodo = (state: StoreState) => state.updateTodo;
 
 const TodoItem = ({ todo }: { todo: Todo }) => {
   const removeTodo = useStore(selectRemoveTodo);
@@ -52,7 +52,7 @@ const TodoItem = ({ todo }: { todo: Todo }) => {
           type="checkbox"
           id={String(todo.id)}
           className="bg-violet-800 hover:bg-violet-600 text-white min-w-5 min-h-5"
-          checked={todo.done}
+          checked={todo.isComplete}
           onChange={() => toggleTodo(todo.id)}
         />
 
@@ -82,7 +82,7 @@ const TodoItem = ({ todo }: { todo: Todo }) => {
             </button>
           </div>
         ) : (
-          <span className={todo.done ? "line-through text-gray-400" : "text-gray-900 text-base"}>
+          <span className={todo.isComplete ? "line-through text-gray-400" : "text-gray-900 text-base"}>
             {todo.title}
           </span>
         )}
@@ -90,11 +90,11 @@ const TodoItem = ({ todo }: { todo: Todo }) => {
 
       {!isEditing && (
         <div className="flex text-base">
-          {!todo.done ? (
+          {!todo.isComplete ? (
             <button
               onClick={() => setIsEditing(true)}
               className="py-1 px-2 rounded"
-              disabled={todo.done}
+              disabled={todo.isComplete}
               title="편집"
             >
               ✏️

@@ -1,9 +1,17 @@
 {
   "dependencies": {
-    "express": "^5.2.1"
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongoose": "^7.8.9"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
   },
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js",
+    "seed": "node data/seed.js"
+  }
 }

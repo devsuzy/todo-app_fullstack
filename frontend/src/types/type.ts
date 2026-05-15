@@ -1,7 +1,7 @@
 export type Todo = {
   id: number;
   title: string;
-  done: boolean;
+  isComplete: boolean;
 };
 
 export type StoreState = {
@@ -9,5 +9,5 @@ export type StoreState = {
   addTodo: (title: string) => void;
   removeTodo: (id: number) => void;
   toggleTodo: (id: number) => void;
-  updatedTodo: (id: number, title: string) => void;
+  updateTodo: (id: number, title: string) => void;
 };
