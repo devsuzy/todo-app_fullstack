@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import Task from './models/Task.js';
 import mongoose from "mongoose";
+import cors from 'cors';
 
 const app = express();
 
