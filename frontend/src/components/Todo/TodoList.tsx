@@ -20,7 +20,7 @@ export const TodoList = () => {
   return (
     <div className="w-full flex flex-col gap-2">
       {todos.map((todo) => (
-        <MemoedTodoItem key={todo.id} todo={todo} />
+        <MemoedTodoItem key={todo._id} todo={todo} />
       ))}
     </div>
   );

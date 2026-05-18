@@ -1,13 +1,17 @@
 export type Todo = {
-  id: number;
+  _id: string;
   title: string;
-  isComplete: boolean;
+  isCompleted: boolean;
+  description?: string;
+  createdAt: string;
 };
 
 export type StoreState = {
   todos: Todo[];
-  addTodo: (title: string) => void;
-  removeTodo: (id: number) => void;
-  toggleTodo: (id: number) => void;
-  updateTodo: (id: number, title: string) => void;
+  isLoading: boolean;
+  fetchTodos: () => Promise<void>;
+  addTodo: (title: string) => Promise<void>;
+  removeTodo: (id: string) => Promise<void>;
+  toggleTodo: (id: string, currentValue: boolean) => Promise<void>;
+  updateTodo: (id: string, title: string) => Promise<void>;
 };

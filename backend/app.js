@@ -56,10 +56,10 @@ app.get('/tasks/:id', asyncHandler(async (req, res) => {
 }));
 
 // 할일 생성
-app.post('/tasks', async (req, res) => {
+app.post('/tasks', asyncHandler(async (req, res) => {
   const newTask = await Task.create(req.body);
   res.status(201).send(newTask);
-});
+}));
 
 // 할일 수정
 app.patch('/tasks/:id', asyncHandler(async (req, res) => {

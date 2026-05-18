@@ -1,45 +1,44 @@
 import { create } from "zustand";
-import { StoreState, Todo } from "@/types/type";
-import { persist } from "zustand/middleware";
+import { StoreState } from "@/types/type";
+import { taskApi } from "@/lib/api";
 
-const generatedId = (existingTodos: Todo[]): number => {
-  if (existingTodos.length === 0) return 1;
-  return Math.max(...existingTodos.map((todo) => todo.id)) + 1;
-};
+const useStore = create<StoreState>()((set) => ({
+  todos: [],
+  isLoading: false,
 
-const useStore = create<StoreState>()(
-  persist(
-    (set, get) => ({
-      todos: [],
-      addTodo: (title) => {
-        const currentTodos = get().todos;
-        const newId = generatedId(currentTodos);
-        set((prev) => ({
-          todos: [...prev.todos, { id: newId, title, isComplete: false }],
-        }));
-      },
-      removeTodo: (id) =>
-        set((prev) => ({
-          todos: prev.todos.filter((todo) => todo.id !== id),
-        })),
-      toggleTodo: (id) =>
-        set((prev) => ({
-          todos: prev.todos.map((todo) => (todo.id === id ? { ...todo, isComplete: !todo.isComplete } : todo)),
-        })),
-      updateTodo: (id, title) =>
-        set((prev) => ({
-          todos: prev.todos.map((todo) =>
-            todo.id === id ? { ...todo, title: title.trim() } : todo
-          ),
-        })),
-    }),
-    {
-      name: "todo-storage",
-      onRehydrateStorage: () => (state, error) => {
-        if (error) console.log("저장소 로드 실패:", error);
-      },
-    }
-  )
-);
+  fetchTodos: async () => {
+    set({ isLoading: true });
+    const todos = await taskApi.getAll();
+    const today = new Date().toDateString();
+    const todayTodos = todos.filter(
+      (t: { createdAt: string }) => new Date(t.createdAt).toDateString() === today
+    );
+    set({ todos: todayTodos, isLoading: false });
+  },
+
+  addTodo: async (title) => {
+    const newTodo = await taskApi.create(title);
+    set((prev) => ({ todos: [...prev.todos, newTodo] }));
+  },
+
+  removeTodo: async (id) => {
+    await taskApi.delete(id);
+    set((prev) => ({ todos: prev.todos.filter((t) => t._id !== id) }));
+  },
+
+  toggleTodo: async (id, currentValue) => {
+    const updated = await taskApi.update(id, { isCompleted: !currentValue });
+    set((prev) => ({
+      todos: prev.todos.map((t) => (t._id === id ? updated : t)),
+    }));
+  },
+
+  updateTodo: async (id, title) => {
+    const updated = await taskApi.update(id, { title });
+    set((prev) => ({
+      todos: prev.todos.map((t) => (t._id === id ? updated : t)),
+    }));
+  },
+}));
 
 export default useStore;

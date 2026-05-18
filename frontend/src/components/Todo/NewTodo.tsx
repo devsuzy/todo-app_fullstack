@@ -10,7 +10,7 @@ export const NewTodo = () => {
   const [text, setText] = useState("");
 
   const onAdd = () => {
-    addTodo(text);
+    addTodo(text.trim());
     setText("");
   };
 
@@ -32,7 +32,7 @@ export const NewTodo = () => {
       <button
         className="text-lg bg-violet-500 dark:bg-violet-800 hover:bg-violet-600 text-white py-2 px-3 rounded-sm disabled:opacity-60"
         onClick={onAdd}
-        disabled={!text}
+        disabled={!text.trim()}
       >
         Add
       </button>

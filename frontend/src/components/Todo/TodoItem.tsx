@@ -26,7 +26,7 @@ const TodoItem = ({ todo }: { todo: Todo }) => {
   const handleSave = () => {
     const trimmedText = editText.trim();
     if (trimmedText && trimmedText !== todo.title) {
-      updateTodo(todo.id, trimmedText);
+      updateTodo(todo._id, trimmedText);
     }
     setIsEditing(false);
     setEditText(todo.title);
@@ -50,10 +50,10 @@ const TodoItem = ({ todo }: { todo: Todo }) => {
       <div className="flex gap-4">
         <input
           type="checkbox"
-          id={String(todo.id)}
+          id={todo._id}
           className="bg-violet-800 hover:bg-violet-600 text-white min-w-5 min-h-5"
-          checked={todo.isComplete}
-          onChange={() => toggleTodo(todo.id)}
+          checked={todo.isCompleted}
+          onChange={() => toggleTodo(todo._id, todo.isCompleted)}
         />
 
         {isEditing ? (
@@ -63,8 +63,8 @@ const TodoItem = ({ todo }: { todo: Todo }) => {
               type="text"
               value={editText}
               onChange={(e) => setEditText(e.target.value)}
-              onKeyDown={handleKeyPress} // 키로 조작 가능
-              onBlur={handleSave} // 포커스 잃으면 자동 저장
+              onKeyDown={handleKeyPress}
+              onBlur={handleSave}
               className="w-auto max-w-52 px-2 py-1 border border-violet-300 rounded focus:outline-none focus:ring-2 focus:ring-violet-500"
             />
             <button
@@ -82,7 +82,7 @@ const TodoItem = ({ todo }: { todo: Todo }) => {
             </button>
           </div>
         ) : (
-          <span className={todo.isComplete ? "line-through text-gray-400" : "text-gray-900 text-base"}>
+          <span className={todo.isCompleted ? "line-through text-gray-400" : "text-gray-900 text-base"}>
             {todo.title}
           </span>
         )}
@@ -90,11 +90,11 @@ const TodoItem = ({ todo }: { todo: Todo }) => {
 
       {!isEditing && (
         <div className="flex text-base">
-          {!todo.isComplete ? (
+          {!todo.isCompleted ? (
             <button
               onClick={() => setIsEditing(true)}
               className="py-1 px-2 rounded"
-              disabled={todo.isComplete}
+              disabled={todo.isCompleted}
               title="편집"
             >
               ✏️
@@ -104,7 +104,7 @@ const TodoItem = ({ todo }: { todo: Todo }) => {
           )}
           <button
             className="py-1 px-2 rounded"
-            onClick={() => removeTodo(todo.id)}
+            onClick={() => removeTodo(todo._id)}
             title="삭제"
           >
             🗑️
